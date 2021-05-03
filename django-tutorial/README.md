@@ -1,6 +1,7 @@
 # django-tutorial
 
 Django Tutorial
+
 ## Run
 
 $ python manage.py runserver
