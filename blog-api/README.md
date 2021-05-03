@@ -1,5 +1,6 @@
 # django-blog-api
-Djanggo blog with API
+
+Django blog with API
 
 ## Run
 
