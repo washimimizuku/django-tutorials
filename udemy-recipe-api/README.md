@@ -32,3 +32,9 @@ $ docker-compose up
 $ docker-compose run app sh -c "python manage.py makemigrations"
 $ docker-compose run app sh -c "python manage.py migrate"
 ```
+
+## Add superuser
+
+```
+$ docker-compose run app sh -c "python manage.py createsuperuser"
+```
