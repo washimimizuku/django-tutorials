@@ -23,7 +23,7 @@ $ docker-compose run app sh -c "python manage.py test && flake8"
 ## Run
 
 ```
-$ docker-compose run app sh -c "python manage.py runserver"
+$ docker-compose up
 ```
 
 ## Run migrations
