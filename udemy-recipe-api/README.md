@@ -2,18 +2,32 @@
 
 Udemy recipe api tutorial
 
+## Build docker Image
+
+```
+$ docker-compose build
+```
+
 ## Create Django project
 
+```
 $ docker-compose run app sh -c "django-admin.py startproject app ."
+```
 
 ## Test
 
-$ docker-compose run app sh -c "python manage.py test"
+```
+$ docker-compose run app sh -c "python manage.py test && flake8"
+```
 
 ## Run
 
-$ python manage.py runserver
+```
+$ docker-compose run app sh -c "python manage.py runserver"
+```
 
 ## Run migrations
 
-$ python manage.py migrate
+```
+$ docker-compose run app sh -c "python manage.py migrate"
+```
