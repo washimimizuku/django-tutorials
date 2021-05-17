@@ -6,6 +6,10 @@ Udemy recipe api tutorial
 
 $ docker-compose run app sh -c "django-admin.py startproject app ."
 
+## Test
+
+$ docker-compose run app sh -c "python manage.py test"
+
 ## Run
 
 $ python manage.py runserver
