@@ -31,11 +31,12 @@ class PrivateTagsApiTests(TestCase):
     """Test the authorized user tags API"""
 
     def setUp(self):
+        self.client = APIClient()
+
         self.user = get_user_model().objects.create_user(
             'test@example.com',
             'password123',
         )
-        self.client = APIClient()
         self.client.force_authenticate(self.user)
 
     def test_retrieve_tags(self):
