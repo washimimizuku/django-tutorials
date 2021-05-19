@@ -265,7 +265,7 @@ class RecipeImageUploadTests(TestCase):
         self.recipe.refresh_from_db()
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIn('image', res.data)
+        self.assertIn('image', response.data)
         self.assertTrue(os.path.exists(self.recipe.image.path))
 
     def test_upload_image_bad_request(self):
