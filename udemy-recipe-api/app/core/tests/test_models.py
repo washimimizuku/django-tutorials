@@ -4,6 +4,9 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 
 from core import models
+from faker import Faker
+
+faker = Faker()
 
 
 def sample_user(email='test@example.com', password='testpass'):
@@ -17,8 +20,8 @@ class ModelTests(TestCase):
     def test_create_user_with_email_succesful(self):
         """Test creating a new user with an email is succesful"""
 
-        email = 'test@example.com'
-        password = 'Testpass123'
+        email = faker.email()
+        password = faker.password(length=12)
 
         user = get_user_model().objects.create_user(
             email=email,
@@ -30,28 +33,37 @@ class ModelTests(TestCase):
 
     def test_new_user_email_normalized(self):
         """Test the email for a new user is normalized"""
+
         email = 'test@EXAMPLE.COM'
+        password = faker.password(length=12)
 
         user = get_user_model().objects.create_user(
             email=email,
-            password='test123'
+            password=password
         )
 
         self.assertEqual(user.email, email.lower())
 
     def test_new_user_invalid_email(self):
         """Test creating user with no email raises error"""
+
+        password = faker.password(length=12)
+
         with self.assertRaises(ValueError):
             get_user_model().objects.create_user(
                 email=None,
-                password='test123'
+                password=password
             )
 
     def test_create_new_superuser(self):
         """Test creating a new superuser"""
+
+        email = faker.email()
+        password = faker.password(length=12)
+
         user = get_user_model().objects.create_superuser(
-            email='test123@email.com',
-            password='test123'
+            email=email,
+            password=password
         )
 
         self.assertTrue(user.is_superuser)

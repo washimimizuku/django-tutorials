@@ -4,20 +4,28 @@ from django.urls import reverse
 
 from .models import Post
 
+from faker import Faker
+
+faker = Faker()
+
+username = faker.word()
+email = faker.email()
+password = faker.password(length=12)
+
 
 class BlogTests(TestCase):
 
     def setUp(self):
         self.user = get_user_model().objects.create_user(
-            username = 'testuser',
-            email = 'test@email.com',
-            password = 'secret'
+            username=username,
+            email=email,
+            password=password
         )
 
         self.post = Post.objects.create(
-            title = 'A good title',
-            body = 'Nice body content',
-            author = self.user,
+            title='A good title',
+            body='Nice body content',
+            author=self.user,
         )
 
     def test_string_representation(self):
@@ -29,7 +37,7 @@ class BlogTests(TestCase):
 
     def test_post_content(self):
         self.assertEqual(f'{self.post.title}', 'A good title')
-        self.assertEqual(f'{self.post.author}', 'testuser')
+        self.assertEqual(f'{self.post.author}', username)
         self.assertEqual(f'{self.post.body}', 'Nice body content')
 
     def test_post_list_view(self):
